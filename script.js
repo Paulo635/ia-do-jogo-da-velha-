@@ -1,6 +1,9 @@
-const board = document.getElementById('board');
-const squares = document.querySelectorAll('.square');
-const winningLines = [
+const board = document.getElementById("board");
+const squares = document.querySelectorAll(".square");
+let currentPlayer = "X";
+let gameOver = false;
+let moves = 0;
+let winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -8,51 +11,31 @@ const winningLines = [
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
 ];
 
-let player = 'X';
-let gameover = false;
+squares.forEach((square) => {
+    square.addEventListener("click", () => {
+        if (!gameOver && !square.innerText) {
+            square.innerText = currentPlayer;
+            moves++;
+            if (checkForWinner()) {
+                alert(`${currentPlayer} ganhou!`);
+                gameOver = true;
+            } else if (moves === 9) {
+                alert("Empate!");
+                gameOver = true;
+            } else {
+                currentPlayer = currentPlayer === "X" ? "O" : "X";
+            }
+        }
+    });
+});
 
-function handleClick(e) {
-    if (gameover || e.target.classList.contains('clicked')) {
-        return;
-    }
-
-    e.target.textContent = player;
-    e.target.classList.add('clicked');
-
-    if (checkWin()) {
-        alert(`${player} ganhou!`);
-        gameover = true;
-        return;
-    }
-
-    if (checkTie()) {
-        alert('Empate!');
-        gameover = true;
-        return;
-    }
-
-    switchPlayer();
-    if (player === 'O') {
-        setTimeout(makeAiMove, 500);
-    }
-}
-
-function checkWin() {
-    return winningLines.some(line => {
-        return line.every(index => {
-            return squares[index].textContent === player;
+function checkForWinner() {
+    return winningCombos.some((combo) => {
+        return combo.every((index) => {
+            return squares[index].innerText === currentPlayer;
         });
     });
 }
-
-function checkTie() {
-    return [...squares].every(square => {
-        return square.textContent !== '';
-    });
-}
-
-function switchPlayer() {
-    player = player === 'X' ? 'O' :
