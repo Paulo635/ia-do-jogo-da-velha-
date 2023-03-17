@@ -1,27 +1,10 @@
-#board {
-    display: flex;
-    flex-wrap: wrap;
-    width: 306px;
-    margin: 0 auto;
-}
-
 .square {
     width: 100px;
     height: 100px;
-    background-color: #fff;
-    border: 2px solid #000;
-    font-size: 4em;
+    display: inline-block;
+    border: 1px solid black;
     text-align: center;
     line-height: 100px;
+    font-size: 3rem;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.square:hover {
-    background-color: #ddd;
-}
-
-.square.clicked {
-    background-color: #ccc;
-    cursor: not-allowed;
 }
