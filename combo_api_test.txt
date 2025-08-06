@@ -1,0 +1,10 @@
+eve.holt@reqres.in:cityslicka
+janet.weaver@reqres.in:password123
+emma.wong@reqres.in:test123
+charles.morris@reqres.in:admin123
+tracey.ramos@reqres.in:pass123
+admin@test.com:admin
+user@example.com:password
+test@api.com:test
+demo@site.com:demo
+api@test.com:apikey123

@@ -1,0 +1,59 @@
+{
+  "mode": "login",
+  "request_steps": [
+    {
+      "name": "get_login_page",
+      "url": "https://httpbin.org/get",
+      "method": "GET",
+      "capture_regex": {
+        "ip_address": "\"origin\":\\s*\"([^\"]+)\"",
+        "user_agent": "\"User-Agent\":\\s*\"([^\"]+)\""
+      },
+      "required": true,
+      "delay_after": 1.0
+    },
+    {
+      "name": "submit_login",
+      "url": "https://httpbin.org/post",
+      "method": "POST",
+      "data": "{\"username\": \"<USER>\", \"password\": \"<PASS>\", \"ip\": \"<IP_ADDRESS>\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      "success_strings": ["json", "data"],
+      "failure_strings": ["error", "invalid"],
+      "capture_regex": {
+        "response_data": "\"data\":\\s*\"([^\"]+)\"",
+        "timestamp": "\"timestamp\":\\s*([0-9]+)"
+      },
+      "required": true,
+      "delay_after": 0.5
+    },
+    {
+      "name": "get_profile_data",
+      "url": "https://httpbin.org/headers",
+      "method": "GET",
+      "capture_regex": {
+        "headers_info": "\"headers\":\\s*\\{([^}]+)\\}",
+        "host": "\"Host\":\\s*\"([^\"]+)\""
+      },
+      "required": false,
+      "delay_after": 0.5
+    }
+  ],
+  "captcha": {
+    "enabled": false,
+    "solver": "manual",
+    "api_key": ""
+  },
+  "cloudflare": {
+    "enabled": false
+  },
+  "settings": {
+    "threads": 5,
+    "timeout": 30,
+    "delay": 0.5,
+    "retries": 3
+  }
+}

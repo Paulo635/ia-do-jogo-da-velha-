@@ -1,0 +1,10 @@
+user1@example.com:password123
+admin@test.com:admin123
+test@gmail.com:test123
+user@domain.com:pass123
+demo@site.com:demo123
+sample@email.com:sample123
+john@doe.com:john123
+jane@smith.com:jane123
+alice@wonder.com:alice123
+bob@builder.com:bob123

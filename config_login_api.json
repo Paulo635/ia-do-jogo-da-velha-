@@ -1,0 +1,29 @@
+{
+  "target": {
+    "url": "https://reqres.in/api/login",
+    "method": "POST",
+    "data": "{\"email\": \"<USER>\", \"password\": \"<PASS>\"}",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "User-Agent": "Mozilla/5.0 (Android 12; Mobile; rv:97.0) Gecko/97.0 Firefox/97.0",
+      "Origin": "https://reqres.in",
+      "Referer": "https://reqres.in/"
+    }
+  },
+  "detection": {
+    "success_strings": ["token", "\"success\"", "access_token"],
+    "failure_strings": ["error", "Missing", "invalid", "unauthorized", "400", "401", "403"],
+    "capture_regex": {
+      "token": "\"token\":\\s*\"([^\"]+)\"",
+      "user_id": "\"id\":\\s*(\\d+)",
+      "email": "\"email\":\\s*\"([^\"]+)\""
+    }
+  },
+  "settings": {
+    "threads": 10,
+    "timeout": 15,
+    "delay": 0.5,
+    "retries": 3
+  }
+}

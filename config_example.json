@@ -1,0 +1,33 @@
+{
+  "target": {
+    "url": "https://example.com/api/login",
+    "method": "POST",
+    "data": "email=<USER>&password=<PASS>",
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "X-Requested-With": "XMLHttpRequest"
+    }
+  },
+  "detection": {
+    "success_strings": [
+      "success",
+      "token",
+      "dashboard"
+    ],
+    "failure_strings": [
+      "invalid",
+      "error",
+      "failed"
+    ],
+    "capture_regex": {
+      "token": "\"token\":\"([^\"]+)\"",
+      "user_id": "\"user_id\":(\\d+)"
+    }
+  },
+  "settings": {
+    "threads": 20,
+    "timeout": 30,
+    "delay": 0.1,
+    "retries": 3
+  }
+}
